@@ -31,6 +31,16 @@ jobs:
           retention-days: 30
       - name: Setup Pages
         uses: actions/configure-pages@v2
+      - name: Create report directory with timestamp
+        id: create-dir
+        run: |
+          timestamp=$(date +%Y%m%d%H%M%S)
+          echo "::set-output name=dir::reports/$timestamp"
+      - name: Move Playwright report to unique directory
+        run: |
+          report_dir=${{ steps.create-dir.outputs.dir }}
+          mkdir -p $report_dir
+          cp -r playwright-report/* $report_dir
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
