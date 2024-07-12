@@ -30,22 +30,18 @@ jobs:
           path: playwright-report/
           retention-days: 30
       - name: Setup Pages
+        if: always()
         uses: actions/configure-pages@v2
-      - name: Create report directory with timestamp
-        id: create-dir
-        run: |
-          timestamp=$(date +%Y%m%d%H%M%S)
-          echo "::set-output name=dir::reports/$timestamp"
-      - name: Move Playwright report to unique directory
-        run: |
-          report_dir=${{ steps.create-dir.outputs.dir }}
-          mkdir -p $report_dir
-          cp -r playwright-report/* $report_dir
       - name: Upload artifact
+        if: always()
         uses: actions/upload-pages-artifact@v1
         with:
           # Upload entire repository
           path: playwright-report/
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
+      - name: Deploy Page
+        if: always()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          publish_dir: playwright-report/1
+          publish_branch: gh-pages
+          keep_files: true
