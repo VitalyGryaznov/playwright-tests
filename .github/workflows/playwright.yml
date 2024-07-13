@@ -38,12 +38,7 @@ jobs:
         with:
           # Upload entire repository
           path: playwright-report/
-      - name: Deploy
+      - name: Deploy to GitHub Pages
         if: always()
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public/1
-      #- name: Deploy to GitHub Pages
-      #id: deployment
-      #uses: actions/deploy-pages@v1
+        id: deployment
+        uses: actions/deploy-pages@v1
