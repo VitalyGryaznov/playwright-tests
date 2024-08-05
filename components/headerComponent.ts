@@ -5,12 +5,14 @@ export class HeaderComponent {
   headerLocator: Locator;
   loginLinkLocator: Locator;
   loggedInGreetingsLocator: Locator;
+  cartLocator: Locator;
 
   constructor(page) {
     this.page = page;
     this.headerLocator = this.page.locator(".panel.header");
     this.loginLinkLocator = this.page.locator("header .authorization-link");
     this.loggedInGreetingsLocator = this.page.locator("header .logged-in");
+    this.cartLocator = this.page.locator('.minicart-wrapper');
   }
 
   async verifyComponentLoaded() {
@@ -19,6 +21,10 @@ export class HeaderComponent {
 
   async clickOnLoginLink() {
     await this.loginLinkLocator.click();
+  }
+
+  async clickOnCart() {
+    await this.cartLocator.click();
   }
 
   async verifyLoggedIn() {
