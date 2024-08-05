@@ -1,7 +1,7 @@
 import { Locator, Page, expect } from "@playwright/test";
 
 export class HomePage {
-  static url = "https://magento.softwaretestingboard.com/";
+  static url = "/";
 
   homePagePromoLocator: Locator;
 

@@ -23,7 +23,7 @@ export class HeaderComponent {
 
   async verifyLoggedIn() {
     await expect(this.loggedInGreetingsLocator).toBeVisible({
-      timeout: 600000,
+      timeout: 60000,
     });
   }
 }
